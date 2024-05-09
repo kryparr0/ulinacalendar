@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulina Calendar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Current Ulina Date:</h1>
+    <p id="currentDate"></p>
+
+    <script>
+        // Function to get the ordinal suffix for a number (e.g., 1st, 2nd, 3rd, etc.)
+        function getOrdinalSuffix(number) {
+            var suffixes = ["th", "st", "nd", "rd"];
+            var v = number % 100;
+            return number + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
+        }
+
+        // Calculate the current date in Ulina and format it
+        function getCurrentDate() {
+            var startDate = new Date("2024-01-01");
+            var currentDate = new Date();
+            var monthsPassed = (currentDate.getFullYear() - startDate.getFullYear()) * 12 + (currentDate.getMonth() - startDate.getMonth());
+            var currentYear = 2057 + Math.floor(monthsPassed / 3);
+            var currentMonth = (startDate.getMonth() + monthsPassed) % 12;
+            if (currentMonth === 0) currentMonth = 12;
+            var daysPassed = Math.floor((currentDate - new Date(startDate.getFullYear() + Math.floor(monthsPassed / 12), startDate.getMonth() + (monthsPassed % 12), 1)) / (1000 * 60 * 60 * 24));
+            
+            // Get the ordinal suffix for the day
+            var dayWithSuffix = getOrdinalSuffix(daysPassed + 1);
+            
+            // Array of month names
+            var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            
+            // Format the current date string
+            var currentDateInWorld = `${dayWithSuffix} of ${monthNames[currentMonth - 1]}, ${currentYear}`;
+            return currentDateInWorld;
+        }
+
+        // Update the webpage with the current date in Ulina
+        document.getElementById("currentDate").innerText = getCurrentDate();
+    </script>
+</body>
+</html>

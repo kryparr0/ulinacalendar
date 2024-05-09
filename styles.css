@@ -1,0 +1,10 @@
+body {
+    background-color: #284476; /* Blue background color */
+    color: white; /* White text color */
+    font-family: sans-serif; /* Sans-serif font */
+    text-align: center; /* Center-align text */
+}
+
+h1 {
+    margin-top: 50px; /* Add some top margin to the heading */
+}
